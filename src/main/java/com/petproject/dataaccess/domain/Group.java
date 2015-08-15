@@ -28,4 +28,16 @@ public class Group {
     public Collection<Person> getMembers() {
         return members;
     }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMembers(Collection<Person> members) {
+        this.members = members;
+    }
 }
