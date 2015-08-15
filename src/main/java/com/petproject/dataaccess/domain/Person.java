@@ -36,7 +36,11 @@ public class Person {
         return lastName;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "PERSON_GROUP", joinColumns = {
+            @JoinColumn(name = "PERSON_ID", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",
+                    nullable = false, updatable = false) })
     public Collection<Group> getGroups() {
         return groups;
     }

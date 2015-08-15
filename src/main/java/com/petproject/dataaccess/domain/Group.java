@@ -1,32 +1,30 @@
 package com.petproject.dataaccess.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-
+@Entity
+@Table(name="GROUPS")
 public class Group {
     private Long Id;
     private String name;
     private Collection<Person> members;
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name="ID")
     public Long getId() {
         return Id;
     }
 
-    @Column(name="GROUP_NAME")
+    @Column(name="GROUP_NAME", nullable = false)
     public String getName() {
         return name;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
     public Collection<Person> getMembers() {
         return members;
     }

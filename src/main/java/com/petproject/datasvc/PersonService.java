@@ -1,17 +1,14 @@
-package com.petproject.dataaccess.dao;
-
+package com.petproject.datasvc;
 
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
 
 import java.util.Collection;
 
-public interface PersonDao {
+public interface PersonService {
     void save(Person person);
-    void update(Person person);
     void delete(Person person);
-    Person findByPersonById(Long personId);
+    Person getPersonById(Long id);
     Collection<Person> getAllPersons();
     Collection<Group> getAllGroups(Person person);
-    Collection<Person> findByName(String name);
 }
