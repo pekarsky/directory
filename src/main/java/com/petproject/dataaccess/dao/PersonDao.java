@@ -14,4 +14,5 @@ public interface PersonDao {
     Collection<Person> getAllPersons();
     Collection<Group> getAllGroups(Person person);
     Collection<Person> findByName(String name);
+    void addToGroup(Person person, Group group);
 }

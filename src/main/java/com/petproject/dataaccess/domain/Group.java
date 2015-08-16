@@ -14,12 +14,12 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="ID")
+    @Column(name="GROUP_ID")
     public Long getId() {
         return Id;
     }
 
-    @Column(name="GROUP_NAME", nullable = false)
+    @Column(name="NAME", nullable = false)
     public String getName() {
         return name;
     }

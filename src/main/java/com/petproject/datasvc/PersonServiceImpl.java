@@ -15,28 +15,33 @@ public class PersonServiceImpl implements PersonService{
     @Autowired
     private PersonDao personDao;
 
-    @Override
     public void save(Person person) {
         personDao.save(person);
     }
 
-    @Override
     public void delete(Person person) {
         personDao.delete(person);
     }
 
     @Override
+    public void update(Person person) {
+        personDao.update(person);
+    }
+
     public Person getPersonById(Long id) {
         return personDao.findByPersonById(id);
     }
 
-    @Override
     public Collection<Person> getAllPersons() {
         return personDao.getAllPersons();
     }
 
-    @Override
     public Collection<Group> getAllGroups(Person person) {
         return personDao.getAllGroups(person);
+    }
+
+    @Override
+    public void addGroupToPerson(Person person, Group group) {
+        personDao.addToGroup(person, group);
     }
 }

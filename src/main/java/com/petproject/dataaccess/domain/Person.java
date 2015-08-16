@@ -17,7 +17,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="ID")
+    @Column(name="PERSON_ID")
     public Long getId() {
         return Id;
     }
