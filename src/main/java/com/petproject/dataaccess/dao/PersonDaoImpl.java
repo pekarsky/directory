@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @Repository("personDao")
+@SuppressWarnings("unused")
 public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDao {
     public void save(Person person) {
         getHibernateTemplate().save(person);
