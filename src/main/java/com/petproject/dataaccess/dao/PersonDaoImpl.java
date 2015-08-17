@@ -5,6 +5,7 @@ import com.petproject.dataaccess.domain.Person;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,14 +13,15 @@ import java.util.List;
 
 
 @Repository("personDao")
+@Transactional
 @SuppressWarnings("unused")
 public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDao {
     public void save(Person person) {
-        getHibernateTemplate().save(person);
+        getSessionFactory().getCurrentSession().save(person);
     }
 
     public void update(Person person) {
-        getHibernateTemplate().update(person);
+        getSessionFactory().getCurrentSession().update(person);
     }
 
     public void delete(Person person) {
