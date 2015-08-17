@@ -11,6 +11,7 @@ import java.util.Collection;
 
 @Service("groupService")
 @Transactional
+@SuppressWarnings("unused")
 public class GroupServiceImpl implements GroupService {
     @Autowired
     private GroupDao groupDao;
@@ -27,11 +28,9 @@ public class GroupServiceImpl implements GroupService {
         groupDao.delete(group);
     }
 
-    @Override
     public Group getById(Long groupId) {
         return groupDao.getById(groupId);
     }
-
 
     public Collection<Person> getMembers(Group group) {
         return groupDao.getMembers(group);

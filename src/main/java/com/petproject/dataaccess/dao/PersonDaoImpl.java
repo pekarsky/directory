@@ -3,6 +3,7 @@ package com.petproject.dataaccess.dao;
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -50,7 +51,7 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
     @SuppressWarnings("unchecked")
     public Collection<Person> findByName(String name) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class);
-        criteria.add(Restrictions.like("lastName", name));
+        criteria.add(Restrictions.like("lastName", name, MatchMode.ANYWHERE)); //TODO match all names, not just lastname
         return (List<Person>) criteria.list();
     }
 
