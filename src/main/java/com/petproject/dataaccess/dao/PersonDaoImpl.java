@@ -5,6 +5,7 @@ import com.petproject.dataaccess.domain.Person;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 
 
 @Repository("personDao")
-@Transactional
+// @Transactional(propagation = Propagation.REQUIRED)
 @SuppressWarnings("unused")
 public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDao {
     public void save(Person person) {
@@ -25,11 +26,11 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
     }
 
     public void delete(Person person) {
-        getHibernateTemplate().delete(person);
+        getSessionFactory().getCurrentSession().delete(person);
     }
 
     public Person findByPersonById(Long personId) {
-        return getHibernateTemplate().get(Person.class, personId);
+        return (Person) getSessionFactory().getCurrentSession().get(Person.class, personId);
     }
 
     @SuppressWarnings("unchecked")
@@ -58,6 +59,7 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
         Collection<Group> personGroups = person.getGroups();
         if(personGroups == null){
             personGroups = new ArrayList<>();
+            person.setGroups(personGroups);
         }
         getSessionFactory().getCurrentSession().update(person);
         if(!personGroups.contains(group)){
