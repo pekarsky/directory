@@ -5,26 +5,29 @@ import com.petproject.dataaccess.domain.Person;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
 
 @Repository("groupDao")
+@Transactional(propagation = Propagation.REQUIRED)
 public class GroupDaoImpl extends CustomHibernateDaoSupport implements GroupDao {
     public void save(Group group) {
         getHibernateTemplate().save(group);
     }
 
     public void update(Group group) {
-        getHibernateTemplate().update(group);
+        getSessionFactory().getCurrentSession().update(group);
     }
 
     public void delete(Group group) {
-        getHibernateTemplate().delete(group);
+        getSessionFactory().getCurrentSession().delete(group);
     }
 
     public Group getById(Long id) {
-        return getHibernateTemplate().get(Group.class, id);
+        return (Group)getSessionFactory().getCurrentSession().get(Group.class, id);
     }
 
 
