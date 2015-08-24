@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
+import java.util.Set;
 
 @Service("personService")
 @Transactional
@@ -29,14 +29,14 @@ public class PersonServiceImpl implements PersonService{
     }
 
     public Person getPersonById(Long id) {
-        return personDao.findByPersonById(id);
+        return personDao.getPersonById(id);
     }
 
-    public Collection<Person> getAllPersons() {
+    public Set<Person> getAllPersons() {
         return personDao.getAllPersons();
     }
 
-    public Collection<Group> getAllGroups(Person person) {
+    public Set<Group> getAllGroups(Person person) {
         return personDao.getAllGroups(person);
     }
 

@@ -8,7 +8,7 @@ import com.petproject.datasvc.PersonService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import java.util.Collection;
+import java.util.Set;
 
 public class MainApplication {
     public static void main(String[] args) {
@@ -19,14 +19,14 @@ public class MainApplication {
         Person person2 = service.getPersonById(2L);
         System.out.println(person2);
 
-        Collection groups = service.getAllGroups(person2);
+        Set<Group> groups = service.getAllGroups(person2);
         System.out.println(groups);
 
         GroupService groupService = (GroupService) context.getBean("groupService");
 
         Group group1 = groupService.getById(1L);
 
-        Collection<Person> members = groupService.getMembers(group1);
+        Set<Person> members = groupService.getMembers(group1);
         System.out.println(members);
         service.addGroupToPerson(person2, group1);
         System.out.println("AllDone");
