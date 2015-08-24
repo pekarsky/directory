@@ -135,6 +135,13 @@
             <version>1.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -154,6 +161,20 @@
                 <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/directory/</path>
+                    <update>true</update>
+                    <url>http://localhost:8080/manager/text</url>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>
