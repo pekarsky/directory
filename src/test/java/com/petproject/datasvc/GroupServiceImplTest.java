@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = {Person.class, Group.class, AppConfig.class, HibernateConfiguration.class})
 @EnableTransactionManagement
 @TransactionConfiguration(defaultRollback=true)
+@WebAppConfiguration
 public class GroupServiceImplTest {
 
     @Autowired
