@@ -3,45 +3,55 @@ package com.petproject.dataaccess.domain;
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
-import java.util.Collection;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="PERSONS")
 public class Person {
 
-    private Long Id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private Collection<Group> groups;
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name="PERSON_ID")
-    public Long getId() {
-        return Id;
-    }
+    private Long Id;
     @Column(name="FIRST_NAME")
-    public String getFirstName() {
-        return firstName;
-    }
-
+    private String firstName;
     @Column(name="MIDDLE_NAME")
-    public String getMiddleName() {
-        return middleName;
-    }
-
+    private String middleName;
     @Column(name="LAST_NAME")
-    public String getLastName() {
-        return lastName;
-    }
-
+    private String lastName;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "PERSON_GROUP", joinColumns = {
             @JoinColumn(name = "PERSON_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",
                     nullable = false, updatable = false) })
-    public Collection<Group> getGroups() {
+    private Set<Group> groups;
+
+
+    public Long getId() {
+        return Id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    public Set<Group> getGroups() {
+        if(groups == null){
+            groups = new HashSet<>();
+        }
         return groups;
     }
 
@@ -61,7 +71,7 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public void setGroups(Collection<Group> groups) {
+    public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
 }

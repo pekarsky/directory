@@ -9,13 +9,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 
 @Repository("personDao")
-// @Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 @SuppressWarnings("unused")
 public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDao {
     public void save(Person person) {
@@ -30,36 +28,36 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
         getSessionFactory().getCurrentSession().delete(person);
     }
 
-    public Person findByPersonById(Long personId) {
+    public Person getPersonById(Long personId) {
         return (Person) getSessionFactory().getCurrentSession().get(Person.class, personId);
     }
 
     @SuppressWarnings("unchecked")
-    public Collection<Person> getAllPersons() {
+    public Set<Person> getAllPersons() {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class);
-        return (List<Person>) criteria.list();
+        return new HashSet<>((List<Person>) criteria.list());
     }
 
     @SuppressWarnings("unchecked")
-    public Collection<Group> getAllGroups(Person person) {
+    public Set<Group> getAllGroups(Person person) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Group.class, "group");
         criteria.createAlias("group.members", "m");
         criteria.add(Restrictions.eq("m.id", person.getId()));
-        return (List<Group>) criteria.list();
+        return new HashSet<>((List<Group>) criteria.list());
     }
 
     @SuppressWarnings("unchecked")
-    public Collection<Person> findByName(String name) {
+    public Set<Person> findByName(String name) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class);
         criteria.add(Restrictions.like("lastName", name, MatchMode.ANYWHERE)); //TODO match all names, not just lastname
-        return (List<Person>) criteria.list();
+        return new HashSet<>((List<Person>) criteria.list());
     }
 
     @Override
     public void addToGroup(Person person, Group group) {
-        Collection<Group> personGroups = person.getGroups();
+        Set<Group> personGroups = person.getGroups();
         if(personGroups == null){
-            personGroups = new ArrayList<>();
+            personGroups = new HashSet<>();
             person.setGroups(personGroups);
         }
         getSessionFactory().getCurrentSession().update(person);

@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.petproject.configuration" })
-// @PropertySource(value = {"classpath:database-${env}.properties"})
 @PropertySource(value = {"classpath:database.properties"})
 public class HibernateConfiguration {
     @Autowired
