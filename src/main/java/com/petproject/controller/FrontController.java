@@ -18,12 +18,13 @@ public class FrontController {
     //}
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView helloWorld() {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody
+    public String helloWorld() {
 
         String message = "<br><div style='text-align:center;'>"
                 + "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from FronController.java **********</div><br><br>";
-        return new ModelAndView("welcome", "message", message);
+        return message;
     }
 
 
