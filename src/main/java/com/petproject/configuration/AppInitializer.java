@@ -1,4 +1,4 @@
-package com.petproject.mvc;
+package com.petproject.configuration;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;

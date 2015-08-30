@@ -1,4 +1,4 @@
-package com.petproject.mvc;
+package com.petproject.configuration;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 
 @Configuration
