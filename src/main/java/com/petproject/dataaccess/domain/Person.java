@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="PERSONS")
@@ -26,7 +26,7 @@ public class Person {
             @JoinColumn(name = "PERSON_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",
                     nullable = false, updatable = false) })
-    private Set<Group> groups;
+    private List<Group> groups;
 
 
     public Long getId() {
@@ -37,20 +37,20 @@ public class Person {
         return firstName;
     }
 
-
+    @SuppressWarnings("unused")
     public String getMiddleName() {
         return middleName;
     }
 
-
+    @SuppressWarnings("unused")
     public String getLastName() {
         return lastName;
     }
 
 
-    public Set<Group> getGroups() {
+    public List<Group> getGroups() {
         if(groups == null){
-            groups = new HashSet<>();
+            groups = new ArrayList<>();
         }
         return groups;
     }
@@ -71,7 +71,7 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public void setGroups(Set<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 }

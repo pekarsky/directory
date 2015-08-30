@@ -4,7 +4,6 @@ import com.petproject.configuration.AppConfig;
 import com.petproject.configuration.HibernateConfiguration;
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +38,7 @@ public class GroupServiceImplTest {
         assertNotNull(group.getId());
     }
 
-    protected Group createGroup(String name, Set<Person> members){
+    protected Group createGroup(String name, List<Person> members){
         Group group = new Group();
         group.setName(name);
         group.setMembers(members);

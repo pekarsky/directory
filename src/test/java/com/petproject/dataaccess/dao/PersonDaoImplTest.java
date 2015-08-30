@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +56,7 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
         System.out.println(person);
     }
 
-    private Person createPerson(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPerson(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = new Person();
         result.setFirstName(firstName);
         result.setMiddleName(middleName);
@@ -65,7 +65,7 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
         return result;
     }
 
-    private Person createPersonAndSave(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPersonAndSave(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = createPerson(firstName, middleName, lastName, groups);
         personDao.save(result);
         return (result);
@@ -105,7 +105,7 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
     @Test
     public void testGetAllPersons() throws Exception {
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
-        Set<Person> persons = personDao.getAllPersons();
+        List<Person> persons = personDao.getAllPersons();
         assertNotNull(persons);
         assertTrue(persons.size() > 0);
     }
@@ -116,7 +116,7 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
         Group group = createGroupAndSave("new group name");
         personDao.addToGroup(person, group);
-        Set<Group> persistentGroups = personDao.getAllGroups(person);
+        List<Group> persistentGroups = personDao.getAllGroups(person);
 
         assertNotNull(persistentGroups);
     }
@@ -132,7 +132,8 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
     public void testFindByName() throws Exception {
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
         Person person2 = createPersonAndSave("firstname2", "middlename2", "lastname2", null);
-        Set<Person> persons = personDao.findByName("last");
+        List<Person> persons = personDao.findByName("last");
+        assertTrue(persons.size()>1);
         System.out.println(persons);
     }
 

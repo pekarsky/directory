@@ -32,10 +32,10 @@ public class GroupDaoImpl extends CustomHibernateDaoSupport implements GroupDao 
     }
 
 
-    public Set<Person> getMembers(Group group) {
+    public List<Person> getMembers(Group group) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class, "person");
         criteria.createAlias("person.groups", "group");
         criteria.add(Restrictions.eq("group.id", group.getId()));
-        return new HashSet<>((List<Person>) criteria.list());
+        return criteria.list();
     }
 }

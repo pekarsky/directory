@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
+import java.util.List;
 
 @Controller
 @RequestMapping("/person")
@@ -38,7 +38,7 @@ public class PersonController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView listPersons() {
         LOGGER.debug("Running default method - start");
-        Set<Person> allPersons = personService.getAllPersons();
+        List<Person> allPersons = personService.getAllPersons();
         ModelAndView mv = new ModelAndView("personListView");
         mv.addObject("personList", allPersons);
         return mv;

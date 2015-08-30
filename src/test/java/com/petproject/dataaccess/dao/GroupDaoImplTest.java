@@ -18,7 +18,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -51,7 +51,7 @@ public class GroupDaoImplTest  extends AbstractTransactionalJUnit4SpringContextT
         assertNotNull(group.getId());
     }
 
-    protected Group createGroup(String name, Set<Person> members){
+    protected Group createGroup(String name, List<Person> members){
         Group group = new Group();
         group.setName(name);
         group.setMembers(members);
@@ -123,7 +123,7 @@ public class GroupDaoImplTest  extends AbstractTransactionalJUnit4SpringContextT
      //   session = sessionFactory.openSession();
 
 //        session.getTransaction().commit();
-        Set<Person> members = groupDao.getMembers(group);
+        List<Person> members = groupDao.getMembers(group);
     //    Set<Person> members1 = groupDao.getMembers(group1);
         System.out.println("6");
 
@@ -132,7 +132,7 @@ public class GroupDaoImplTest  extends AbstractTransactionalJUnit4SpringContextT
 
     }
 
-    private Person createPerson(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPerson(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = new Person();
         result.setFirstName(firstName);
         result.setMiddleName(middleName);
@@ -141,7 +141,7 @@ public class GroupDaoImplTest  extends AbstractTransactionalJUnit4SpringContextT
         return result;
     }
 
-    private Person createPersonAndSave(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPersonAndSave(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = createPerson(firstName, middleName, lastName, groups);
         personDao.save(result);
         return (result);

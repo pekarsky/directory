@@ -33,31 +33,31 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
     }
 
     @SuppressWarnings("unchecked")
-    public Set<Person> getAllPersons() {
+    public List<Person> getAllPersons() {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class);
-        return new HashSet<>((List<Person>) criteria.list());
+        return criteria.list();
     }
 
     @SuppressWarnings("unchecked")
-    public Set<Group> getAllGroups(Person person) {
+    public List<Group> getAllGroups(Person person) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Group.class, "group");
         criteria.createAlias("group.members", "m");
         criteria.add(Restrictions.eq("m.id", person.getId()));
-        return new HashSet<>((List<Group>) criteria.list());
+        return criteria.list();
     }
 
     @SuppressWarnings("unchecked")
-    public Set<Person> findByName(String name) {
+    public List<Person> findByName(String name) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class);
         criteria.add(Restrictions.like("lastName", name, MatchMode.ANYWHERE)); //TODO match all names, not just lastname
-        return new HashSet<>((List<Person>) criteria.list());
+        return criteria.list();
     }
 
     @Override
     public void addToGroup(Person person, Group group) {
-        Set<Group> personGroups = person.getGroups();
+        List<Group> personGroups = person.getGroups();
         if(personGroups == null){
-            personGroups = new HashSet<>();
+            personGroups = new ArrayList<>();
             person.setGroups(personGroups);
         }
         getSessionFactory().getCurrentSession().update(person);

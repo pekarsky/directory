@@ -1,8 +1,8 @@
 package com.petproject.dataaccess.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Group {
     private Long Id;
     private String name;
-    private Set<Person> members;
+    private List<Person> members;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -26,9 +26,9 @@ public class Group {
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "groups")
-    public Set<Person> getMembers() {
+    public List<Person> getMembers() {
         if(members==null){
-            members = new HashSet<>();
+            members = new ArrayList<>();
         }
         return members;
     }
@@ -41,7 +41,7 @@ public class Group {
         this.name = name;
     }
 
-    public void setMembers(Set<Person> members) {
+    public void setMembers(List<Person> members) {
         this.members = members;
     }
 }

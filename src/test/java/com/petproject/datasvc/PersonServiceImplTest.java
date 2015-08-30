@@ -4,7 +4,6 @@ import com.petproject.configuration.AppConfig;
 import com.petproject.configuration.HibernateConfiguration;
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -41,7 +40,7 @@ public class PersonServiceImplTest {
         System.out.println(person);
     }
 
-    private Person createPerson(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPerson(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = new Person();
         result.setFirstName(firstName);
         result.setMiddleName(middleName);
@@ -59,7 +58,7 @@ public class PersonServiceImplTest {
         assertNull(deletedPerson);
     }
 
-    private Person createPersonAndSave(String firstName, String middleName, String lastName, Set<Group> groups) {
+    private Person createPersonAndSave(String firstName, String middleName, String lastName, List<Group> groups) {
         Person result = createPerson(firstName, middleName, lastName, groups);
         personService.save(result);
         return (result);
@@ -90,7 +89,7 @@ public class PersonServiceImplTest {
     @SuppressWarnings("unused")
     public void testGetAllPersons() throws Exception {
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
-        Set<Person> persons = personService.getAllPersons();
+        List<Person> persons = personService.getAllPersons();
         assertNotNull(persons);
         assertTrue(persons.size() > 0);
     }
@@ -101,7 +100,7 @@ public class PersonServiceImplTest {
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
         Group group = createGroupAndSave("new group name");
         personService.addGroupToPerson(person, group);
-        Set<Group> persistentGroups = personService.getAllGroups(person);
+        List<Group> persistentGroups = personService.getAllGroups(person);
 
         assertNotNull(persistentGroups);
     }

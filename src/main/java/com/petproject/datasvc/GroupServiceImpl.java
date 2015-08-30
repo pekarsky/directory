@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Set;
+import java.util.List;
 
 @Service("groupService")
 @Transactional
@@ -32,7 +32,7 @@ public class GroupServiceImpl implements GroupService {
         return groupDao.getById(groupId);
     }
 
-    public Set<Person> getMembers(Group group) {
+    public List<Person> getMembers(Group group) {
         return groupDao.getMembers(group);
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Set;
 
 @Service("personService")
@@ -32,11 +33,11 @@ public class PersonServiceImpl implements PersonService{
         return personDao.getPersonById(id);
     }
 
-    public Set<Person> getAllPersons() {
+    public List<Person> getAllPersons() {
         return personDao.getAllPersons();
     }
 
-    public Set<Group> getAllGroups(Person person) {
+    public List<Group> getAllGroups(Person person) {
         return personDao.getAllGroups(person);
     }
 
