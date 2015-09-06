@@ -1,5 +1,10 @@
 package com.petproject.dataaccess.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -21,11 +26,18 @@ public class Person {
     private String middleName;
     @Column(name="LAST_NAME")
     private String lastName;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name="LOGIN")
+    private String login;
+    @JsonIgnore
+    @Column(name="PASSWORD")
+    private String password;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PERSON_GROUP", joinColumns = {
             @JoinColumn(name = "PERSON_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",
                     nullable = false, updatable = false) })
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
+    @JsonManagedReference
     private List<Group> groups;
 
 
@@ -47,7 +59,7 @@ public class Person {
         return lastName;
     }
 
-
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
     public List<Group> getGroups() {
         if(groups == null){
             groups = new ArrayList<>();
@@ -73,5 +85,21 @@ public class Person {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

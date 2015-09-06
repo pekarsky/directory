@@ -1,5 +1,7 @@
 package com.petproject.dataaccess.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Group {
     private Long Id;
     private String name;
-    private List<Person> members;
+    List<Person> members;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -25,7 +27,8 @@ public class Group {
         return name;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "groups")
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "groups")
+    @JsonBackReference
     public List<Person> getMembers() {
         if(members==null){
             members = new ArrayList<>();

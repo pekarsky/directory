@@ -1,5 +1,6 @@
 package com.petproject.controller;
 
+import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
 import com.petproject.datasvc.PersonService;
 import org.apache.log4j.LogManager;
@@ -41,6 +42,18 @@ public class PersonController {
         List<Person> allPersons = personService.getAllPersons();
         ModelAndView mv = new ModelAndView("personListView");
         mv.addObject("personList", allPersons);
+        return mv;
+    }
+
+    // list all persons
+    @RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
+    public ModelAndView listPersonGroups(@PathVariable("id") Long id) {
+        LOGGER.debug("Running default method - start");
+        Person person=personService.getPersonById(id);
+        List<Group> allPersonGroups = personService.getAllGroups(person);
+        ModelAndView mv = new ModelAndView("personGroupsView");
+        mv.addObject("allPersonGroups", allPersonGroups);
+        mv.addObject("person", person);
         return mv;
     }
 }

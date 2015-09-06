@@ -116,7 +116,7 @@ public class PersonDaoImplTest extends AbstractTransactionalJUnit4SpringContextT
         Person person = createPersonAndSave("firstname", "middlename", "lastname", null);
         Group group = createGroupAndSave("new group name");
         personDao.addToGroup(person, group);
-        List<Group> persistentGroups = personDao.getAllGroups(person);
+        List<Group> persistentGroups = personDao.getPersonGroups(person);
 
         assertNotNull(persistentGroups);
     }

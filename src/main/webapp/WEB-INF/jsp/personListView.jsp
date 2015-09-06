@@ -7,8 +7,9 @@
 <h1>Persons List</h1>
 
 <c:forEach items="${personList}" var="person">
-    <a href="<c:url value="${person.id}"/>">${person.id}</a>
+    <a href="<c:url value="/person/${person.id}"/>">${person.id}</a>
     ${person.firstName} ${person.middleName} ${person.lastName}
+    <a href="<c:url value="/group/${person.id}"/>">member of</a>
     <br />
 </c:forEach>
 

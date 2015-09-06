@@ -12,7 +12,7 @@ public interface PersonDao {
     void delete(Person person);
     Person getPersonById(Long personId);
     List<Person> getAllPersons();
-    List<Group> getAllGroups(Person person);
+    List<Group> getPersonGroups(Person person);
     List<Person> findByName(String name);
     void addToGroup(Person person, Group group);
 }

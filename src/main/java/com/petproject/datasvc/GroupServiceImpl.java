@@ -28,6 +28,11 @@ public class GroupServiceImpl implements GroupService {
         groupDao.delete(group);
     }
 
+    @Override
+    public List<Group> listGroups() {
+        return groupDao.listGroups();
+    }
+
     public Group getById(Long groupId) {
         return groupDao.getById(groupId);
     }

@@ -39,7 +39,7 @@ public class PersonDaoImpl extends CustomHibernateDaoSupport implements PersonDa
     }
 
     @SuppressWarnings("unchecked")
-    public List<Group> getAllGroups(Person person) {
+    public List<Group> getPersonGroups(Person person) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Group.class, "group");
         criteria.createAlias("group.members", "m");
         criteria.add(Restrictions.eq("m.id", person.getId()));

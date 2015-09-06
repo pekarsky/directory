@@ -8,12 +8,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository("groupDao")
 @Transactional(propagation = Propagation.REQUIRED)
+@SuppressWarnings("unused")
 public class GroupDaoImpl extends CustomHibernateDaoSupport implements GroupDao {
     public void save(Group group) {
         getHibernateTemplate().save(group);
@@ -27,11 +26,18 @@ public class GroupDaoImpl extends CustomHibernateDaoSupport implements GroupDao 
         getSessionFactory().getCurrentSession().delete(group);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Group> listGroups() {
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Group.class);
+        return criteria.list();
+    }
+
     public Group getById(Long id) {
         return (Group)getSessionFactory().getCurrentSession().get(Group.class, id);
     }
 
 
+    @SuppressWarnings("unchecked")
     public List<Person> getMembers(Group group) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class, "person");
         criteria.createAlias("person.groups", "group");

@@ -10,5 +10,6 @@ public interface GroupService {
     void update(Group group);
     void delete(Group group);
     Group getById(Long groupId);
+    List<Group> listGroups();
     List<Person> getMembers(Group group);
 }

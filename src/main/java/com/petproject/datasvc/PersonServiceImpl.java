@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @Service("personService")
 @Transactional
@@ -38,7 +37,7 @@ public class PersonServiceImpl implements PersonService{
     }
 
     public List<Group> getAllGroups(Person person) {
-        return personDao.getAllGroups(person);
+        return personDao.getPersonGroups(person);
     }
 
     @Override

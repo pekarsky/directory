@@ -41,7 +41,7 @@ public class GroupServiceImplTest {
     protected Group createGroup(String name, List<Person> members){
         Group group = new Group();
         group.setName(name);
-        group.setMembers(members);
+//        group.setMembers(members);
         return group;
     }
 

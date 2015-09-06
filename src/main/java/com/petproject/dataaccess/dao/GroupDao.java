@@ -11,5 +11,6 @@ public interface GroupDao {
     void update(Group group);
     void delete(Group group);
     Group getById(Long id);
+    List<Group> listGroups();
     List<Person> getMembers(Group group);
 }
