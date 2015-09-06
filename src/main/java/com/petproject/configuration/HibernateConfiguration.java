@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan({ "com.petproject.configuration" })
 @PropertySource(value = {"classpath:database.properties"})
+@SuppressWarnings("unused")
 public class HibernateConfiguration {
     @Autowired
     private Environment environment;

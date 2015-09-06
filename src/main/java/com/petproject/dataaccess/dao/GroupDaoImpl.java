@@ -36,7 +36,6 @@ public class GroupDaoImpl extends CustomHibernateDaoSupport implements GroupDao 
         return (Group)getSessionFactory().getCurrentSession().get(Group.class, id);
     }
 
-
     @SuppressWarnings("unchecked")
     public List<Person> getMembers(Group group) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Person.class, "person");

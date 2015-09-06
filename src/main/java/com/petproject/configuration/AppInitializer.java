@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+@SuppressWarnings("unused")
 public class AppInitializer implements WebApplicationInitializer {
 
     @Override

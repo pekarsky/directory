@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-
 @Repository("personDao")
 @Transactional(propagation = Propagation.REQUIRED)
 @SuppressWarnings("unused")

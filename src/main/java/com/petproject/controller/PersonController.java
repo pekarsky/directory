@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/person")
+@SuppressWarnings("unused")
 public class PersonController {
     private PersonService personService;
     static Logger LOGGER = LogManager.getLogger(PersonController.class);

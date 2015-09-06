@@ -40,19 +40,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ViewResolver viewResolver() {
-
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/jsp/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
-/*
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-*/
+
     @Bean
     public ContentNegotiatingViewResolver mainViewResolver(){
         ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
@@ -62,7 +56,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //converters.add(new EnumConverter());
         converters.add(new ResourceHttpMessageConverter());
         converters.add(new Jaxb2RootElementHttpMessageConverter());
         converters.add(new MappingJackson2HttpMessageConverter());

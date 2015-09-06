@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name="PERSONS")
+@SuppressWarnings("unused")
 public class Person {
 
     @Id
@@ -36,20 +37,14 @@ public class Person {
             @JoinColumn(name = "PERSON_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GROUP_ID",
                     nullable = false, updatable = false) })
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
     @JsonManagedReference
     private List<Group> groups;
-
-
     public Long getId() {
         return Id;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
-    @SuppressWarnings("unused")
     public String getMiddleName() {
         return middleName;
     }

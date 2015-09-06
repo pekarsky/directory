@@ -1,6 +1,5 @@
 package com.petproject.dataaccess.dao;
 
-
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
 

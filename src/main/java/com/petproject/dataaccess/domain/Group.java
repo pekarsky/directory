@@ -10,6 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name="GROUPS")
+@SuppressWarnings("unused")
 public class Group {
     private Long Id;
     private String name;

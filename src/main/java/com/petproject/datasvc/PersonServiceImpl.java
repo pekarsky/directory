@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service("personService")
 @Transactional
+@SuppressWarnings("unused")
 public class PersonServiceImpl implements PersonService{
     @Autowired
     private PersonDao personDao;

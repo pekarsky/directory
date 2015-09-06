@@ -14,8 +14,6 @@ public class RestPersonController {
     @Autowired
     private PersonService personService;
 
-
-
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     public List<Person> listPersons(){
         return personService.getAllPersons();
