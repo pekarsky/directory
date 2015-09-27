@@ -2,6 +2,7 @@ package com.petproject.controller;
 
 import com.petproject.dataaccess.domain.Group;
 import com.petproject.dataaccess.domain.Person;
+import com.petproject.datasvc.DocumentService;
 import com.petproject.datasvc.PersonService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -19,12 +20,15 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class PersonController {
     private PersonService personService;
+    @Autowired
+    private DocumentService documentService;
     static Logger LOGGER = LogManager.getLogger(PersonController.class);
 
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
+
 
     // show person
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -56,5 +60,9 @@ public class PersonController {
         mv.addObject("allPersonGroups", allPersonGroups);
         mv.addObject("person", person);
         return mv;
+    }
+
+    public void setDocumentService(DocumentService documentService) {
+        this.documentService = documentService;
     }
 }

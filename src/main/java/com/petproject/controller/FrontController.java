@@ -12,8 +12,7 @@ public class FrontController {
     @ResponseBody
     public String helloWorld() {
 
-        String message = "<br><div style='text-align:center;'>"
-                + "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from FronController.java **********</div><br><br>";
+        String message = "home page";
         return message;
     }
 

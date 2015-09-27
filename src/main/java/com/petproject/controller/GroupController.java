@@ -21,7 +21,7 @@ public class GroupController {
     private GroupService groupService;
     static Logger LOGGER = LogManager.getLogger(GroupController.class);
 
-    // list all persons
+    // list all groups
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView listGroups() {
         LOGGER.debug("Running default method - start");

@@ -59,6 +59,15 @@ public class GroupServiceImplTest {
     }
 
     @Test
+    public void testListGroups() throws Exception {
+        Group group = createGroup("test group", null);
+        groupService.save(group);
+        assertNotNull(group.getId());
+        List<Group> allGroups = groupService.listGroups();
+        assertTrue(allGroups.size()>0);
+    }
+
+    @Test
     public void testDelete() throws Exception {
         Group group = createGroup("test group", null);
         groupService.save(group);
