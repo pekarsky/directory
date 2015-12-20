@@ -7,6 +7,10 @@
 
 Persons: ${personCount}<br/>
 Groups: ${groupCount}
+<br/>
+<a href="<c:url value="j_spring_security_logout" />" > Logout</a>
 
+<c:url value="/login?logout" var="logoutUrl" />
+				<a href="${logoutUrl}">Log Out</a>
 </body>
 </html>
